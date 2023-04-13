@@ -64,10 +64,16 @@ images.forEach((elemento) => {
 })
 
 
-let primaImg = images[0].image;
-
 //stampo la prima immagine
-document.querySelector('.images').innerHTML += `<div class="item active"><img src="${primaImg} " alt="image"></div>`
+document.querySelector('.images').innerHTML += `
+<div class="item active">
+    <img src="${images[0].image} " alt="image">
+    <div class="texts">
+            <h5>${images[0].title}</h5>
+            <p>${images[0].text}</p>
+    </div>
+</div>
+`
 
 
 let arrowTop = document.querySelector('.arrow-top');
@@ -76,9 +82,8 @@ let arrowDown = document.querySelector('.arrow-down');
 
 let position = 0
 
-//al click cambia l'immagine
-arrowTop.addEventListener('click', function(){
-
+//funzione custom per generare il cambio immagine
+function changeImage(){
     document.querySelector('.item.active').classList.remove('active');
 
     if(position == images.length -1){
@@ -88,12 +93,11 @@ arrowTop.addEventListener('click', function(){
     }
     
     document.getElementsByClassName('item')[position].classList.add('active');
-    
-})
+}
 
-//al click cambia l'immagine
-arrowDown.addEventListener('click', function(){
 
+//funzione custom per generare il cambio immagine
+function changeImage2(){
     document.querySelector('.item.active').classList.remove('active');
 
     if(position == 0){
@@ -102,34 +106,72 @@ arrowDown.addEventListener('click', function(){
         position--
     }
     
-    document.getElementsByClassName('item')[position].classList.add('active');
-    
+    document.getElementsByClassName('item')[position].classList.add('active');  
+}
+
+
+//al click cambia l'immagine
+arrowTop.addEventListener('click', function(){
+    changeImage()  
+})
+
+//al click cambia l'immagine
+arrowDown.addEventListener('click', function(){
+    changeImage2()  
+})
+
+
+//imposto timer di 3 secondi per cambiare immagine
+let timer = setInterval(function(){
+    changeImage()  
+}, 4000)
+
+
+//bottone di stop per interrompere il timer
+document.querySelector('#stop').addEventListener('click', function(){
+    clearInterval(timer)
+})
+
+
+//bottone di start per riattivare il timer
+document.querySelector('#start').addEventListener('click', function(){
+    let timer2 = setInterval(function(){
+        changeImage()  
+    }, 4000) 
 })
 
 
 
 //thumbnails
 
-document.getElementById('img-1').addEventListener('click', function(){
-    
+function thumb(number){
     document.querySelector('.item.active').classList.remove('active');
 
     document.querySelector('.images').innerHTML += `
     <div class="item active">
-        <img src="${images[0].image}" alt="image">
+        <img src="${images[number].image}" alt="image">
     </div>
     `
+}
+
+document.getElementById('img-1').addEventListener('click', function(){
+    thumb(0)    
 })
 
 document.getElementById('img-2').addEventListener('click', function(){
-    
-    document.querySelector('.item.active').classList.remove('active');
+    thumb(1)
+})
 
-    document.querySelector('.images').innerHTML += `
-    <div class="item active">
-        <img src="${images[1].image}" alt="image">
-    </div>
-    `
+document.getElementById('img-3').addEventListener('click', function(){
+    thumb(2)
+})
+
+document.getElementById('img-4').addEventListener('click', function(){
+    thumb(3)
+})
+
+document.getElementById('img-5').addEventListener('click', function(){
+    thumb(4)
 })
 
 
