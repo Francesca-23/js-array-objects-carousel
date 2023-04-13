@@ -52,7 +52,15 @@ const images = [
 //genero una struttura html per ogni elemento dell'array
 images.forEach((elemento) => {
 
-    document.querySelector('.images').innerHTML += `<div class="item"><img src="${elemento.image} " alt="image"></div>`
+    document.querySelector('.images').innerHTML += `
+    <div class="item">
+        <img src="${elemento.image}" alt="image">
+        <div class="texts">
+            <h5>${elemento.title}</h5>
+            <p>${elemento.text}</p>
+        </div>
+    </div>
+    `
 })
 
 
@@ -73,10 +81,55 @@ arrowTop.addEventListener('click', function(){
 
     document.querySelector('.item.active').classList.remove('active');
 
-    position++
-
+    if(position == images.length -1){
+        position = 0
+    }else{
+        position++
+    }
+    
     document.getElementsByClassName('item')[position].classList.add('active');
     
+})
+
+//al click cambia l'immagine
+arrowDown.addEventListener('click', function(){
+
+    document.querySelector('.item.active').classList.remove('active');
+
+    if(position == 0){
+        position = images.length -1;
+    }else{
+        position--
+    }
+    
+    document.getElementsByClassName('item')[position].classList.add('active');
+    
+})
+
+
+
+//thumbnails
+
+document.getElementById('img-1').addEventListener('click', function(){
+    
+    document.querySelector('.item.active').classList.remove('active');
+
+    document.querySelector('.images').innerHTML += `
+    <div class="item active">
+        <img src="${images[0].image}" alt="image">
+    </div>
+    `
+})
+
+document.getElementById('img-2').addEventListener('click', function(){
+    
+    document.querySelector('.item.active').classList.remove('active');
+
+    document.querySelector('.images').innerHTML += `
+    <div class="item active">
+        <img src="${images[1].image}" alt="image">
+    </div>
+    `
 })
 
 

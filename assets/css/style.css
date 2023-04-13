@@ -34,10 +34,38 @@
     cursor: pointer;
 }
 
+.big-box{
+    height: 37.5rem;
+}
+
+.box-image{
+    height: calc(100% / 5);
+    background-color: black;
+}
+
+.box-image img{
+    opacity: 0.5;
+}
+
+.box-image:hover img{
+    opacity: 1;
+}
+
 .item{
     display: none;
-    height: 300px;
-    width: 300px;
+    height: 37.5rem;
+    width: 50rem;
+    
+}
+
+.texts{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: 0.5rem 1rem;
+    padding: 0.5rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 
@@ -50,3 +78,4 @@ img{
     height: 100%;
     object-fit: cover;
 }
+
